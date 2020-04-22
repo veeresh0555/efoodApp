@@ -53,9 +53,9 @@ public class FoodServiceImpl implements FoodService{
 	}
 
 	@Override
-	public List<OrderDetails> getlatestOrders(long userid) {
+	public List<OrderDetails> getlatestOrders(long id) {
 		Pageable top10=PageRequest.of(0, 10);
-		List<UserDetails> lstOfrec=  userRepository.findByUsername(userid, top10);
+		List<UserDetails> lstOfrec=  userRepository.findByUsername(id, top10);
 		UserDetails udetails=new UserDetails();
 		lstOfrec.stream().forEach(lst->udetails.setOrderlist(lst.getOrderlist()));
 		List<OrderDetails> orderdet=udetails.getOrderlist();

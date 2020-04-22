@@ -1,18 +1,6 @@
 package com.fapp.request;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="transhistory")
 public class TransactionHistory {
-
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long transid;
 	
 	private Double amount;
@@ -94,8 +82,4 @@ public class TransactionHistory {
 	public void setAccountno(String accountno) {
 		this.accountno = accountno;
 	}
-	
-	
-	
-	
 }

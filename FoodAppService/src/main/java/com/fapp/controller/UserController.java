@@ -53,8 +53,8 @@ public class UserController {
 	}
 	
 	@GetMapping("/top10records")
-	public ResponseEntity<List<OrderDetails>> top10Orders(@RequestParam("userid")long userid){
-		List<OrderDetails> lstOfOrders=foodservice.getlatestOrders(userid);
+	public ResponseEntity<List<OrderDetails>> top10Orders(@RequestParam("id")long id){
+		List<OrderDetails> lstOfOrders=foodservice.getlatestOrders(id);
 		return new ResponseEntity<List<OrderDetails>>(lstOfOrders,new HttpHeaders(),HttpStatus.OK);
 	}
 	
