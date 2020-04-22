@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name="user")
 public class UserDetails {
@@ -28,7 +26,6 @@ public class UserDetails {
 	private String age;
 	
 	@OneToMany(mappedBy = "userdet",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JsonIgnore
 	List<OrderDetails> orderlist;
 
 	public long getId() {

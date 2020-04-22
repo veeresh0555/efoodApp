@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fapp.client.VendorClient;
 import com.fapp.model.OrderDetails;
 import com.fapp.model.UserDetails;
-import com.fapp.request.TransactionHistory;
+import com.fapp.request.OrderRequest;
 import com.fapp.request.VendorDetails;
 import com.fapp.service.FoodService;
 
@@ -60,9 +60,9 @@ public class UserController {
 	
 	
 	@PostMapping("/orderfood/{userid}")
-	public ResponseEntity<OrderDetails> foodOrder(@RequestBody TransactionHistory transhistory,@RequestBody VendorDetails vendor,@PathVariable("userid") long userid) throws Exception{
-		OrderDetails foodorder=foodservice.orderfood(transhistory,vendor,userid);
-		return new ResponseEntity<OrderDetails>(foodorder,new HttpHeaders(),HttpStatus.OK);
+		public ResponseEntity<UserDetails> foodOrder(@RequestBody OrderRequest ordRequest,@PathVariable("userid") long userid) throws Exception{
+		UserDetails foodorder=foodservice.orderfood(ordRequest,userid);
+		return new ResponseEntity<UserDetails>(foodorder,new HttpHeaders(),HttpStatus.OK);
 	}
 
 	

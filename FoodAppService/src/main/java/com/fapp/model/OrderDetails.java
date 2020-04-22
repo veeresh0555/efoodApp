@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="orderdetails")
 public class OrderDetails {
@@ -36,6 +38,7 @@ public class OrderDetails {
 	
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(name="userid")
+	@JsonIgnore
 	private UserDetails userdet;
 	
 	@CreationTimestamp
