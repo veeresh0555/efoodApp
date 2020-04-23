@@ -64,8 +64,6 @@ public class FoodServiceImpl implements FoodService{
 		return orderdet;
 	}
 
-	//@Override
-	//public OrderDetails orderfood(TransactionHistory transhistory,VendorDetails vendor, long userid) throws Exception {
 		@Override
 		public UserDetails orderfood(OrderRequest ordRequest, long userid) throws Exception {
 		Optional<UserDetails> checkuserById=userRepository.findById(userid);
@@ -83,16 +81,28 @@ public class FoodServiceImpl implements FoodService{
 					System.out.println("====Enter if loop2");
 					UserDetails udet=checkuserById.get();
 					List<OrderDetails> orderlist=udet.getOrderlist();
-					orderlist.stream().forEach(orderlst->
-					{
-						orderlst.setAmount(ordRequest.getAmount());
-						orderlst.setItemname(ordRequest.getItmname());
-						orderlst.setItmtype(ordRequest.getItmtype());
-						orderlst.setOrderstatus("success");
-						orderlst.setVname(ordRequest.getVname());
-						});
-					udet.setOrderlist(orderlist);
+					OrderDetails uporder=new OrderDetails();
+					udet.setId(userid);
+					uporder.setAmount(ordRequest.getAmount());
+					uporder.setItemname(ordRequest.getItmname());
+					uporder.setItmtype(ordRequest.getItmtype());
+					uporder.setOrderstatus("success"); 
+					uporder.setVname(ordRequest.getVname());
+					uporder.setUserdet(udet);
+					oRepository.save(uporder);
+					
+					
+					/*
+					 * orderlist.stream().forEach(orderlst-> {
+					 * orderlst.setAmount(ordRequest.getAmount());
+					 * orderlst.setItemname(ordRequest.getItmname());
+					 * orderlst.setItmtype(ordRequest.getItmtype());
+					 * orderlst.setOrderstatus("success"); orderlst.setVname(ordRequest.getVname());
+					 * orderlst.setUserdet(udet); }); udet.setOrderlist(orderlist);
+					 */
 					//logs the detailed order list
+					
+					
 					orderlist.forEach(ordlst->System.out.println(
 							"vendorName: "+ordlst.getVname()
 							+"\t: Item Name: "+ordlst.getItemname()
